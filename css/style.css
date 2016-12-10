@@ -1,3 +1,29 @@
 body {
   background-color: red;
 }
+
+body {
+  text-align: center;
+}
+
+ul.grid {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+  width: 600px;
+  height: 600px;
+}
+
+li {
+  width: 198px;
+  height: 198px;
+  border: 1px solid black;
+  float: left;
+  list-style: none;
+  color: #fff;
+  text-align: center;
+}
+
+button {
+  margin-bottom: 10px;
+}
