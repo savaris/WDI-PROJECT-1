@@ -34,3 +34,7 @@ function checkForMatch(){
   firstChoice = '';
   secondChoice = '';
 }
+
+function myFunction() {
+    location.reload();
+}
