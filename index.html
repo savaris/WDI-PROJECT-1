@@ -2,19 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Project</title>
+  <title>Memory Game</title>
   <link rel="stylesheet" href="css/style.css">
-  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="images/icon.ico" rel="icon" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/app.js" charset="utf-8"></script>
 </head>
 <body>
-  <h1>Angry Birds Matching Game</h1>
+  <h1>ANGRY BIRDS MATCH EM</h1>
+  <h2>Score: <span id="score">0</span></h2>
   <p id="display">Game Start</p>
-  <a href="#" class="myButton" id="reset">Reset</a>
-  <!-- <button id="reset">New Game</button> -->
-  <ul class="grid">
-  </ul>
+  <a href="#" class="myButton" id="reset">Randomise</a>
+  <ul></ul>
+    <div id="audio">
+    <audio controls="controls">
+     Your browser does not support the <code>audio</code> element.
+     <source src="sounds/theme.wav" type="audio/wav">
+    </audio>
+</div>
 </body>
 </html>
