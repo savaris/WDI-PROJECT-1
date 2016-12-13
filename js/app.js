@@ -5,7 +5,7 @@ var secondChoice;
 Game.pickBoxes = function() {
   $(this).toggleClass('card');
   $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
-  $(this).css('backgroundColor', 'red');
+  $(this).css('backgroundColor', 'white');
   if (!firstChoice){
     firstChoice = $(this).attr('id');
   }  else {
@@ -13,15 +13,12 @@ Game.pickBoxes = function() {
     Game.match();
   }
 };
-// on first click, get clicked elements id and store in variable
-// on the second click, get the clicked elements id and store in variable
-// then we need to compare the two to see if they match <-- seperate function
 
 Game.match = function(){
   console.log('running');
   if (firstChoice === secondChoice){
     // alert('Match');
-    $('#display').html('Match!!');
+    $('#display').html('Match');
   } else {
     var $lis = $('li');
     for (var i = 0; i < $lis.length; i++) {
@@ -34,7 +31,7 @@ Game.match = function(){
       }
     }
     // alert('Try Again');
-    $('#display').html('Try again!!');
+    $('#display').html('Try Again');
   }
   firstChoice = '';
   secondChoice = '';
@@ -43,9 +40,6 @@ Game.match = function(){
 
 Game.addListeners = function() {
   $('ul').on('click', 'li.card', this.pickBoxes);
-  // add a click event onto all li's on page
-  // when a click has been made, we can call the function pickBoxes
-  // .on('click', this.pickBoxes)
   $('#reset').on('click', Game.reset);
 };
 
