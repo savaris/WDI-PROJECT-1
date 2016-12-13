@@ -28,15 +28,14 @@ li {
   text-align: center;
 }
 
-button {
-  margin-bottom: 10px;
+.cardImage {
+  border-radius: 20px;
+  width: auto;
+  height: 94px;
+  max-width: 94px;
+  text-align: center;
 }
 
-img {
-  width: 1px;
-  height: 100px;
-  float: left;
-  text-align: center;
-  margin: 0 auto;
-  padding: 6px;
+button {
+  margin-bottom: 10px;
 }

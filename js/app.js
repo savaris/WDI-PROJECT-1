@@ -1,15 +1,16 @@
 var Game = Game || {};
-
+var firstChoice;
+var secondChoice;
 
 Game.pickBoxes = function() {
-  var firstChoice = '';
-  var secondChoice = '';
-  console.log($(this).attr('id'));
+  $(this).toggleClass('card');
+  $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
+  $(this).css('backgroundColor', 'red');
   if (!firstChoice){
     firstChoice = $(this).attr('id');
   }  else {
     secondChoice = $(this).attr('id');
-    this.match();
+    Game.match();
   }
 };
 // on first click, get clicked elements id and store in variable
@@ -17,10 +18,21 @@ Game.pickBoxes = function() {
 // then we need to compare the two to see if they match <-- seperate function
 
 Game.match = function(){
+  console.log('running');
   if (firstChoice === secondChoice){
     // alert('Match');
     $('#display').html('Match!!');
   } else {
+    var $lis = $('li');
+    for (var i = 0; i < $lis.length; i++) {
+      if ($($lis[i]).attr('id') === firstChoice || $($lis[i]).attr('id') === secondChoice){
+        $($lis[i]).attr('class', 'card');
+        setTimeout(function(){
+          $('.card').html('');
+          $('.card').css('backgroundColor', '');
+        }, 1000);
+      }
+    }
     // alert('Try Again');
     $('#display').html('Try again!!');
   }
@@ -30,19 +42,24 @@ Game.match = function(){
 
 
 Game.addListeners = function() {
-  $('li').on('click', this.pickBoxes);
+  $('ul').on('click', 'li.card', this.pickBoxes);
   // add a click event onto all li's on page
   // when a click has been made, we can call the function pickBoxes
   // .on('click', this.pickBoxes)
+  $('#reset').on('click', Game.reset);
 };
 
+Game.reset = function(){
+  $('ul').html('');
+  Game.shuffleArray(Game.items);
+  firstChoice = '';
+  secondChoice = '';
+};
 
 Game.createBoard = function(){
   for (var i = 0; i < this.boardBase * this.boardBase; i++) {
-    $('ul').append('<li id='+ this.items[i] +'></li>');
+    $('ul').append('<li class="card" id='+ this.items[i] +'></li>');
   }
-
-  this.addListeners();
 };
 
 Game.shuffleArray = function(a) {
@@ -58,11 +75,11 @@ Game.shuffleArray = function(a) {
 };
 
 Game.start = function(){
-  console.log(this);
   this.boardBase = 6;
   this.items     = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18];
 
   this.shuffleArray(this.items);
+  this.addListeners();
 };
 
 $(Game.start.bind(Game));
