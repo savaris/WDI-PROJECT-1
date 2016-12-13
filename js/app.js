@@ -3,34 +3,50 @@ var firstChoice;
 var secondChoice;
 var score = 0;
 
+Game.win = function(){
+  if (score === 1){
+    $('display').txt('All Pairs Matched');
+  } else {
+    Game.pickBoxes();
+  }
+};
+
 Game.pickBoxes = function() {
-  $(this).toggleClass('card');
+  // $(this).toggleClass('card');
   $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
   $(this).css('backgroundColor', '');
+
   if (!firstChoice){
     firstChoice = $(this).attr('id');
-  }  else {
+  } else {
     secondChoice = $(this).attr('id');
     Game.match();
   }
 };
 
 Game.match = function(){
+  // When you DO have a match
   if (firstChoice === secondChoice){
     $('#display').html('Match');
-    $('#score').text(++score);
+    // var audio = new Audio('sounds/theme.wav');
+    // audio.play();
+    score = score + 1;
+    $('#score').text(score);
+    if (score === 1) $('#display').text('WIN');
+
+  // When you DON'T have a match
   } else {
-    var $lis = $('li');
-    for (var i = 0; i < $lis.length; i++) {
-      if ($($lis[i]).attr('id') === firstChoice || $($lis[i]).attr('id') === secondChoice){
-        $($lis[i]).attr('class', 'card');
-        setTimeout(function(){
-          $('.card').html('');
-          $('.card').css('backgroundColor', '');
-        }, 1000);
-      }
-    }
+    // Empty the previous cards
+    setTimeout(function(firstChoice, secondChoice){
+      var selector = '#' + firstChoice + ', #' + secondChoice;
+      $(selector).html('');
+      $(selector).css('backgroundColor', '');
+
+    }, 1000, firstChoice, secondChoice);
+
     $('#display').html('Try Again');
+    // var audio = new Audio('sounds/theme.wav');
+    // audio.play();
   }
   firstChoice = '';
   secondChoice = '';
@@ -39,7 +55,7 @@ Game.match = function(){
 
 Game.addListeners = function() {
   $('ul').on('click', 'li.card', this.pickBoxes);
-  $('#reset').on('click', Game.reset);
+  $('#reset').on('click', this.reset);
 };
 
 Game.reset = function(){
