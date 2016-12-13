@@ -1,5 +1,8 @@
 body {
-  background-color: red;
+  background-image: url('../images/giphy (3).gif');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 body {
@@ -15,8 +18,9 @@ ul.grid {
 }
 
 li {
-  width: 198px;
-  height: 198px;
+  border-radius: 20px;
+  width: 94px;
+  height: 94px;
   border: 1px solid black;
   float: left;
   list-style: none;
@@ -26,4 +30,13 @@ li {
 
 button {
   margin-bottom: 10px;
+}
+
+img {
+  width: 1px;
+  height: 100px;
+  float: left;
+  text-align: center;
+  margin: 0 auto;
+  padding: 6px;
 }
