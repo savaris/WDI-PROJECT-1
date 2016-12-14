@@ -4,7 +4,6 @@ var secondChoice;
 var score = 0;
 
 Game.pickBoxes = function() {
-  // $(this).toggleClass('card');
   $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
   $(this).css('backgroundColor', '');
 
@@ -17,7 +16,6 @@ Game.pickBoxes = function() {
 };
 
 Game.match = function(){
-  // When you DO have a match
   if (firstChoice === secondChoice){
     $('#display').html('Match');
     // var audio = new Audio('sounds/theme.wav');
@@ -25,17 +23,12 @@ Game.match = function(){
     score = score + 1;
     $('#score').text(score);
     if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs.');
-
-  // When you DON'T have a match
   } else {
-    // Empty the previous cards
     setTimeout(function(firstChoice, secondChoice){
       var selector = '#' + firstChoice + ', #' + secondChoice;
       $(selector).html('');
       $(selector).css('backgroundColor', '');
-
     }, 1000, firstChoice, secondChoice);
-
     $('#display').html('Try Again');
     // var audio = new Audio('sounds/theme.wav');
     // audio.play();
