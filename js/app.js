@@ -16,10 +16,9 @@ Game.pickBoxes = function() {
 };
 
 Game.match = function(){
-  -  console.log('running');
   if (firstChoice === secondChoice){
-    $('$dislay').text('Match');
     new Audio('sounds/match.mp3').play();
+    $('#display').text('Match');
     score = score + 1;
     $('#score').text(score);
     if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs!');
