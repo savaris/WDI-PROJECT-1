@@ -22,7 +22,6 @@ Game.match = function(){
     score = score + 1;
     $('#score').text(score);
     if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs!');
-    new Audio('sounds/win.mp3').play();
   } else {
     var $lis = $('li');
     for (var i = 0; i < $lis.length; i++) {
@@ -70,7 +69,6 @@ Game.shuffleArray = function(a) {
     a[i - 1] = a[j];
     a[j] = x;
   }
-
   this.createBoard();
 };
 
