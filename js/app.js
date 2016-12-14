@@ -3,14 +3,6 @@ var firstChoice;
 var secondChoice;
 var score = 0;
 
-Game.win = function(){
-  if (score === 1){
-    $('display').txt('All Pairs Matched');
-  } else {
-    Game.pickBoxes();
-  }
-};
-
 Game.pickBoxes = function() {
   // $(this).toggleClass('card');
   $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
@@ -32,7 +24,7 @@ Game.match = function(){
     // audio.play();
     score = score + 1;
     $('#score').text(score);
-    if (score === 1) $('#display').text('WIN');
+    if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs.');
 
   // When you DON'T have a match
   } else {
@@ -67,7 +59,7 @@ Game.reset = function(){
 
 Game.createBoard = function(){
   score = 0;
-  for (var i = 0; i < this.boardBase * this.boardBase; i++) {
+  for (var i = 0; i < this.boardBase * this.boardHeight; i++) {
     $('ul').append('<li class="card" id='+ this.items[i] +'></li>');
   }
 };
@@ -86,7 +78,8 @@ Game.shuffleArray = function(a) {
 
 Game.start = function(){
   this.boardBase = 6;
-  this.items     = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18];
+  this.boardHeight = 5;
+  this.items     = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15];
   this.shuffleArray(this.items);
   this.addListeners();
 };

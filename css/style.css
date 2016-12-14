@@ -28,6 +28,7 @@ li {
   color: #fff;
   text-align: center;
   margin: 1px;
+  opacity: 0.9;
 }
 
 #score {
