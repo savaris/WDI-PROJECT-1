@@ -18,11 +18,11 @@ Game.pickBoxes = function() {
 Game.match = function(){
   if (firstChoice === secondChoice){
     $('#display').html('Match');
-    // var audio = new Audio('sounds/theme.wav');
-    // audio.play();
+    new Audio('sounds/match.mp3').play();
     score = score + 1;
     $('#score').text(score);
     if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs.');
+    new Audio('sounds/win.mp3').play();
   } else {
     setTimeout(function(firstChoice, secondChoice){
       var selector = '#' + firstChoice + ', #' + secondChoice;
@@ -30,8 +30,7 @@ Game.match = function(){
       $(selector).css('backgroundColor', '');
     }, 1000, firstChoice, secondChoice);
     $('#display').html('Try Again');
-    // var audio = new Audio('sounds/theme.wav');
-    // audio.play();
+    new Audio('sounds/nomatch.mp3').play();
   }
   firstChoice = '';
   secondChoice = '';
@@ -45,6 +44,7 @@ Game.addListeners = function() {
 
 Game.reset = function(){
   $('ul').html('');
+  $('#score').html('0');
   Game.shuffleArray(Game.items);
   firstChoice = '';
   secondChoice = '';
