@@ -4,9 +4,9 @@ var secondChoice;
 var score = 0;
 
 Game.pickBoxes = function() {
+  $(this).toggleClass('card');
   $(this).html('<img class="cardImage" src="images/image' + $(this).attr('id') + '.png"/>');
   $(this).css('backgroundColor', '');
-
   if (!firstChoice){
     firstChoice = $(this).attr('id');
   } else {
@@ -16,19 +16,25 @@ Game.pickBoxes = function() {
 };
 
 Game.match = function(){
+  -  console.log('running');
   if (firstChoice === secondChoice){
-    $('#display').html('Match');
+    $('$dislay').text('Match');
     new Audio('sounds/match.mp3').play();
     score = score + 1;
     $('#score').text(score);
-    if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs.');
+    if (score === 15) $('#display').text('Congratulations, You\'ve found all the pairs!');
     new Audio('sounds/win.mp3').play();
   } else {
-    setTimeout(function(firstChoice, secondChoice){
-      var selector = '#' + firstChoice + ', #' + secondChoice;
-      $(selector).html('');
-      $(selector).css('backgroundColor', '');
-    }, 1000, firstChoice, secondChoice);
+    var $lis = $('li');
+    for (var i = 0; i < $lis.length; i++) {
+      if ($($lis[i]).attr('id') === firstChoice || $($lis[i]).attr('id') === secondChoice){
+        $($lis[i]).attr('class', 'card');
+        setTimeout(function(){
+          $('.card').html('');
+          $('.card').css('backgroundColor', '');
+        }, 1000);
+      }
+    }
     $('#display').html('Try Again');
     new Audio('sounds/nomatch.mp3').play();
   }
